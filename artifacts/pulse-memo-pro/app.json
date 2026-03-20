@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Pulse Memo Pro",
-    "slug": "pulse-memo-pro",
+    "name": "PulseMemo",
+    "slug": "pulsememo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "pulse-memo-pro",
+    "scheme": "pulsememo",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
@@ -14,10 +14,12 @@
       "backgroundColor": "#080C10"
     },
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.pulsememo.app"
     },
     "android": {
-      "backgroundColor": "#080C10"
+      "backgroundColor": "#080C10",
+      "package": "com.pulsememo.app"
     },
     "web": {
       "favicon": "./assets/images/icon.png"
