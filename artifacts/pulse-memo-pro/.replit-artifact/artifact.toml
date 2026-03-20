@@ -1,0 +1,27 @@
+kind = "mobile"
+previewPath = "/"
+title = "Pulse Memo Pro"
+version = "1.0.0"
+id = "artifacts/pulse-memo-pro"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+name = "expo"
+paths = [ "/" ]
+localPort = 24713
+
+[services.development]
+run = "pnpm --filter @workspace/pulse-memo-pro run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/pulse-memo-pro", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/pulse-memo-pro", "run", "serve" ]
+
+[services.env]
+PORT = "24713"
+BASE_PATH = "/"

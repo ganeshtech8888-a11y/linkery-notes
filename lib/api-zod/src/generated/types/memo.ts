@@ -5,9 +5,6 @@
  * Pulse Memo Pro API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 export interface Memo {
   id: string;
@@ -16,17 +13,4 @@ export interface Memo {
   context: string;
   favicon?: string;
   createdAt: string;
-}
-
-export interface CreateMemoInput {
-  url: string;
-  context: string;
-}
-
-export interface DeleteResult {
-  success: boolean;
-}
-
-export interface ApiError {
-  error: string;
 }
