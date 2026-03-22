@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -22,6 +22,7 @@ import type { Memo } from "@/hooks/useMemos";
 export default function MemosScreen() {
   const insets = useSafeAreaInsets();
   const [sheetVisible, setSheetVisible] = useState(false);
+  const [listKey, setListKey] = useState(0);
   const { data: memos, isLoading, isError, refetch } = useMemos();
   const createMemo = useCreateMemo();
   const deleteMemo = useDeleteMemo();
@@ -30,14 +31,21 @@ export default function MemosScreen() {
 
   async function handleSubmit(url: string, context: string) {
     await createMemo.mutateAsync({ url, context });
+    setListKey((k) => k + 1);
   }
 
-  async function handleDelete(id: string) {
-    await deleteMemo.mutateAsync(id);
-    if (Platform.OS !== "web") {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  const handleDelete = useCallback(async (id: string) => {
+    try {
+      await deleteMemo.mutateAsync(id);
+      setListKey((k) => k + 1);
+      refetch();
+      if (Platform.OS !== "web") {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      }
+    } catch {
+      refetch();
     }
-  }
+  }, [deleteMemo, refetch]);
 
   function handleAdd() {
     if (Platform.OS !== "web") {
@@ -46,9 +54,9 @@ export default function MemosScreen() {
     setSheetVisible(true);
   }
 
-  const renderItem = ({ item }: { item: Memo }) => (
+  const renderItem = useCallback(({ item }: { item: Memo }) => (
     <MemoCard memo={item} onDelete={handleDelete} />
-  );
+  ), [handleDelete]);
 
   return (
     <View style={[styles.container, { paddingTop: topPad }]}>
@@ -93,6 +101,7 @@ export default function MemosScreen() {
         </View>
       ) : (
         <FlatList
+          key={listKey}
           data={memos ?? []}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
