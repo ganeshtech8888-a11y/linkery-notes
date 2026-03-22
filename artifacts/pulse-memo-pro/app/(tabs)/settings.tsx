@@ -98,8 +98,7 @@ export default function SettingsScreen() {
         >
           <LinearGradient
             colors={["#003D4D", "#001A26"]}
-            style={StyleSheet.absoluteFill}
-            borderRadius={16}
+            style={[StyleSheet.absoluteFill, { borderRadius: 16 }]}
           />
           <View style={styles.upgradeContent}>
             <View style={styles.upgradeLeft}>
