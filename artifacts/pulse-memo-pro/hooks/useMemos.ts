@@ -32,7 +32,10 @@ async function createMemo(data: { url: string; context: string }): Promise<Memo>
 
 async function deleteMemo(id: string): Promise<void> {
   const res = await fetch(`${BASE}/memos/${id}`, { method: "DELETE" });
-  if (!res.ok) throw new Error("Failed to delete memo");
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: "Failed to delete" }));
+    throw new Error(err.error || "Failed to delete memo");
+  }
 }
 
 export function useMemos() {
@@ -47,8 +50,10 @@ export function useCreateMemo() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createMemo,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["memos"] });
+    onSuccess: (newMemo) => {
+      queryClient.setQueryData<Memo[]>(["memos"], (old) =>
+        old ? [newMemo, ...old] : [newMemo]
+      );
     },
   });
 }
@@ -57,7 +62,20 @@ export function useDeleteMemo() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: deleteMemo,
-    onSuccess: () => {
+    onMutate: async (id: string) => {
+      await queryClient.cancelQueries({ queryKey: ["memos"] });
+      const previous = queryClient.getQueryData<Memo[]>(["memos"]);
+      queryClient.setQueryData<Memo[]>(["memos"], (old) =>
+        old ? old.filter((m) => m.id !== id) : []
+      );
+      return { previous };
+    },
+    onError: (_err, _id, context) => {
+      if (context?.previous) {
+        queryClient.setQueryData(["memos"], context.previous);
+      }
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["memos"] });
     },
   });

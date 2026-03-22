@@ -47,3 +47,21 @@ export { inMemoryStore };
 export function isMongoConnected(): boolean {
   return isConnected;
 }
+
+export async function seedWelcomeNote(): Promise<void> {
+  if (!isConnected) return;
+  try {
+    const count = await MemoModel.countDocuments();
+    if (count > 0) return;
+    await MemoModel.create({
+      url: "https://linkerynotes.app/welcome",
+      title: "Welcome to Linkery Notes! 📝",
+      context:
+        "Your notes sync to the cloud. Save finance trackers, loan calculators, daily budgets, or any link worth remembering. Tap the + button to add your first link!",
+      favicon: "https://www.google.com/s2/favicons?domain=linkerynotes.app&sz=64",
+    });
+    logger.info("Welcome note seeded");
+  } catch (err) {
+    logger.warn({ err }, "Could not seed welcome note");
+  }
+}

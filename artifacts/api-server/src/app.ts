@@ -3,7 +3,7 @@ import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
-import { connectMongo } from "./lib/mongo";
+import { connectMongo, seedWelcomeNote } from "./lib/mongo";
 
 const app: Express = express();
 
@@ -30,7 +30,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-connectMongo().catch((err) => logger.error({ err }, "MongoDB connection error"));
+connectMongo()
+  .then(() => seedWelcomeNote())
+  .catch((err) => logger.error({ err }, "MongoDB connection error"));
 
 app.use("/api", router);
 
