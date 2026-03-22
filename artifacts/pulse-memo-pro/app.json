@@ -5,25 +5,29 @@
     "version": "1.0.0",
     "description": "Linkery Notes - Smart link saving with MongoDB sync",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icon.png",
     "scheme": "linkery-notes",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#080C10"
+      "backgroundColor": "#1e1b4b"
     },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.ganeshbagal.linkerynotes"
     },
     "android": {
-      "backgroundColor": "#080C10",
-      "package": "com.ganeshbagal.linkerynotes"
+      "backgroundColor": "#1e1b4b",
+      "package": "com.ganeshbagal.linkerynotes",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1e1b4b"
+      }
     },
     "web": {
-      "favicon": "./assets/images/icon.png"
+      "favicon": "./assets/icon.png"
     },
     "plugins": [
       [
