@@ -63,7 +63,7 @@ export default function MemosScreen() {
       <View style={styles.header}>
         <View>
           <View style={styles.titleRow}>
-            <Text style={styles.appName}>Pulse Memo</Text>
+            <Text style={styles.appName}>Linkery Notes</Text>
             <View style={styles.proBadge}>
               <Text style={styles.proText}>PRO</Text>
             </View>

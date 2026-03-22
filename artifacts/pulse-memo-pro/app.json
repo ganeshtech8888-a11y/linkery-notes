@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "PulseMemo",
-    "slug": "pulsememo",
+    "name": "Linkery Notes",
+    "slug": "linkery-notes",
     "version": "1.0.0",
+    "description": "Linkery Notes - Smart link saving with MongoDB sync",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "pulsememo",
+    "scheme": "linkery-notes",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
@@ -15,11 +16,11 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.pulsememo.app"
+      "bundleIdentifier": "com.ganeshbagal.linkerynotes"
     },
     "android": {
       "backgroundColor": "#080C10",
-      "package": "com.pulsememo.app"
+      "package": "com.ganeshbagal.linkerynotes"
     },
     "web": {
       "favicon": "./assets/images/icon.png"

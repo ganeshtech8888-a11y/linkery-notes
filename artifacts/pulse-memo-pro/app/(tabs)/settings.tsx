@@ -65,8 +65,8 @@ export default function SettingsScreen() {
 
   function handleUpgrade() {
     Alert.alert(
-      "Pulse Memo Pro",
-      "Pro plan coming soon! Unlock unlimited memos, cloud sync, and ad-free experience.",
+      "Linkery Notes Pro",
+      "Pro plan coming soon! Unlock unlimited notes, cloud sync, and ad-free experience.",
       [{ text: "Got it", style: "default" }]
     );
   }

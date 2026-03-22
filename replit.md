@@ -11,14 +11,14 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **Package manager**: pnpm
 - **TypeScript version**: 5.9
 - **API framework**: Express 5
-- **Database**: MongoDB Atlas via Mongoose (`MONGO_URI` secret), falls back to in-memory store
+- **Database**: MongoDB Atlas via Mongoose (`MONGO_URI` secret, db: `linkery-notes`), falls back to in-memory store
 - **Validation**: Zod (`zod/v4`), `drizzle-zod`
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
 ## Applications
 
-### Pulse Memo Pro (Mobile App — `artifacts/pulse-memo-pro`)
+### Linkery Notes (Mobile App — `artifacts/pulse-memo-pro`)
 A professional dark-mode mobile app for saving URLs with personal context/notes.
 
 **Features:**

@@ -11,7 +11,7 @@ export async function connectMongo(): Promise<void> {
     return;
   }
   try {
-    await mongoose.connect(uri, { dbName: "pulse-memo-pro" });
+    await mongoose.connect(uri, { dbName: "linkery-notes" });
     isConnected = true;
     logger.info("Connected to MongoDB Atlas");
   } catch (err) {
