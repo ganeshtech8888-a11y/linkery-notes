@@ -30,7 +30,7 @@ def add_memo():
     mongo.db.memos.insert_one({
       'content': content,
       'date_created': datetime.utcnow()
-      })
+       })
     flash("Note added successfully!")
     return redirect(url_for('index'))
 @app.route('/delete/<id>', methods=['POST'])
@@ -39,5 +39,5 @@ def delete_memo(id):   
                              ObjectId(id)})
   flash("Note deleted.")
   return redirect(url_for('index'))
-    if __name__ == "__main__":    
+    if __name__ == "__main__":.  
   app.run(debug=True)
