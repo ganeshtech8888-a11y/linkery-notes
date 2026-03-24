@@ -23,11 +23,14 @@ def index():
                              1)    
   return render_template('index.html', 
                          memos=memos)
-@app.route('/add', methods=['POST'])def add_memo():
+@app.route('/add', methods=['POST'])
+def add_memo():
   content = request.form.get('content')
   if content:       
-    mongo.db.memos.insert_one({'content': 
-                               content,'date_created': datetime.utcnow()})
+    mongo.db.memos.insert_one({
+      'content': content,
+      'date_created': datetime.utcnow()
+    })
     flash("Note added successfully!")
     return redirect(url_for('index'))
 @app.route('/delete/<id>', methods=['POST'])
