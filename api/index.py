@@ -10,18 +10,16 @@ app = Flask(__name__)
 app.secret_key = "notes_pro_secret_key"
 
 # Vercel Environment Variable for MongoDB
-app.config["MONGO_URI"] = 
-os.environ.get("MONGODB_URI")
+app.config["MONGO_URI"] = os.environ.get("MONGODB_URI")
 mongo = PyMongo(app)
 # Vercel needs this specific variable name to find the app
 app = app
 @app.route('/')
 def index():
   # Fetching all notes/memos from MongoDB    
-  memos = 
-  mongo.db.memos.find().sort("date_created", -
+  memos = mongo.db.memos.find().sort("date_created", -
                              1)    
-  return render_template('index.html', 
+  return render_template('index.html' 
                          memos=memos)
 @app.route('/add', methods=['POST'])
 def add_memo():
@@ -39,5 +37,4 @@ def delete_memo(id):   
                              ObjectId(id)})
   flash("Note deleted.")
   return redirect(url_for('index'))
-  if __name__ == "__main__":.    
-  app.run(debug=True)
+  if __name__ == "__main__": app.run(debug=True)
