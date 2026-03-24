@@ -31,12 +31,3 @@ def add_memo():
         })
         flash("Note added successfully!")
     return redirect(url_for('index'))
-
-@app.route('/delete/<id>', methods=['POST'])
-def delete_memo(id):
-    mongo.db.memos.delete_one({'_id': ObjectId(id)})
-    flash("Note deleted.")
-    return redirect(url_for('index'))
-
-if __name__ == "__main__":
-    app.run(debug=True)
